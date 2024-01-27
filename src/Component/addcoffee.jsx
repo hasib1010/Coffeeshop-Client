@@ -1,13 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, json } from 'react-router-dom';
 
 const AddCoffee = () => {
+    const handleAddCoffee = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const chef = form.chef.value;
+        const supplier = form.supplier.value;
+        const taste = form.taste.value;
+        const category = form.category.value;
+        const details = form.details.value;
+        const photo = form.photo.value;
+        const newCoffee = { name, chef, supplier, taste, category, details, photo };
+        console.log(newCoffee);
+        fetch('http://localhost:5000/coffee', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(newCoffee)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+        // reset()
+    }
     return (
         <div>
             <div className='w-fit mx-auto '><Link className='btn btn-primary' to={'/'}>Home</Link></div>
 
             <div className='container mx-auto '>
-                <form className='w-4/5 mx-auto mt-4 bg-[#F4F3F0] min-h-svh'>
+                <form onSubmit={handleAddCoffee} className='w-4/5 mx-auto mt-4 bg-[#F4F3F0] min-h-svh'>
                     <h1 className='text-center  font-bold text-5xl py-6'>Add New Coffee</h1>
                     <p className='w-3/5 mx-auto text-center my-4 text-sm'>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
                     <div className='flex justify-around'>
@@ -43,12 +68,12 @@ const AddCoffee = () => {
                     </div>
                     <div className='w-4/5 mx-auto mt-7'>
                         <h2 className="text-xl">Photo</h2>
-                        <input className='  w-3/4  rounded-md border h-12 pl-4' placeholder='Enter photo URL' type="text" />
+                        <input name='photo' className='  w-3/4  rounded-md border h-12 pl-4' placeholder='Enter photo URL' type="text" />
                     </div>
-                  
-                 <div className='flex items-center  justify-center'>
-                 <input className='w-5/6   mt-7 btn btn-warning' type="submit" value="Add Coffee" />
-                 </div>
+
+                    <div className='flex items-center  justify-center'>
+                        <input className='w-5/6   mt-7 btn btn-warning' type="submit" value="Add Coffee" />
+                    </div>
                 </form>
             </div>
         </div>
