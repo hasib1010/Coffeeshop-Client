@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, json } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
+// import 'sweetalert2/src/sweetalert2.scss';
 const AddCoffee = () => {
     const handleAddCoffee = (e) => {
         e.preventDefault();
@@ -24,6 +25,14 @@ const AddCoffee = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Congratulations!',
+                        text: 'Coffee Added successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    });
+                } 
             })
         // reset()
     }
