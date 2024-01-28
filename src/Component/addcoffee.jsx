@@ -34,7 +34,7 @@ const AddCoffee = () => {
             <div className='container mx-auto '>
                 <form onSubmit={handleAddCoffee} className='w-4/5 mx-auto mt-4 bg-[#F4F3F0] min-h-svh'>
                     <h1 className='text-center  font-bold text-5xl py-6'>Add New Coffee</h1>
-                    <p className='w-3/5 mx-auto text-center my-4 text-sm'>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
+                    <p className='w-3/5 mx-auto text-center my-4 text-sm'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
                     <div className='flex justify-around'>
 
                         <label className='mt-5'>
