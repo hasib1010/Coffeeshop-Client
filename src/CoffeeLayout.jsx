@@ -4,11 +4,9 @@ import { AiFillDelete } from "react-icons/ai";
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom';
 
-const CoffeeLayout = ({ coffee }) => {
-  console.log(coffee);
+const CoffeeLayout = ({ coffee, coffees, setCoffees }) => {
   const { chef, details, name, photo, supplier, taste, _id } = coffee;
   const handleDelete = (_id) => {
-    // console.log(_id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -24,13 +22,15 @@ const CoffeeLayout = ({ coffee }) => {
         })
           .then(res => res.json())
           .then(data => {
-            // console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
                 text: "Your Coffee has been deleted.",
                 icon: "success"
               });
+
+              const remaining = coffees.filter(cof=> cof._id !== _id)
+              setCoffees(remaining)
             }
           })
       }
@@ -51,9 +51,9 @@ const CoffeeLayout = ({ coffee }) => {
           <FaEye className='text-2xl my-2 cursor-pointer '></FaEye>
         </div>
         <Link to={`/updateCoffee/${_id}`}>
-        <div className='btn w-fit px-2  hover:text-red-700 '>
-          <FaPen className='text-2xl my-2 cursor-pointer '></FaPen>
-        </div></Link>
+          <div className='btn w-fit px-2  hover:text-red-700 '>
+            <FaPen className='text-2xl my-2 cursor-pointer '></FaPen>
+          </div></Link>
         <div onClick={() => handleDelete(_id)} className='  hover:text-red-700 btn w-fit px-2'>
           <AiFillDelete className='text-2xl my-2 cursor-pointer '></AiFillDelete>
         </div>

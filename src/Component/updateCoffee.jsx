@@ -1,21 +1,23 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-
+import Swal from 'sweetalert2'
 const UpdateCoffee = () => {
     const coffee = useLoaderData();
     const { chef, details, name, photo, supplier, taste, _id, category } = coffee;
+    
     const updateCoffee = (e) => {
         e.preventDefault();
         const form = e.target;
-        const name = form.name.defaultValue;
-        const chef = form.chef.defaultValue;
-        const supplier = form.supplier.defaultValue;
-        const taste = form.taste.defaultValue;
-        const category = form.category.defaultValue;
-        const details = form.details.defaultValue;
-        const photo = form.photo.defaultValue;
-        const updatedCoffee = { name, chef, supplier, taste, category, details, photo };
-        console.log(updatedCoffee);
+        const name = form.name.value;
+        const chef = form.chef.value;
+        const supplier = form.supplier.value;
+        const taste = form.taste.value;
+        const category = form.category.value;
+        const details = form.details.value;
+        const photo = form.photo.value;
+
+        const updatedCoffee = {name, chef, supplier, taste, category, details, photo };
+        
         fetch(`http://localhost:5000/coffee/${_id}`, {
             method: "PUT",
             headers: {
@@ -42,7 +44,7 @@ const UpdateCoffee = () => {
            <Link to={'/'}>Home</Link>
             <div className='container mx-auto '>
                 <form onSubmit={updateCoffee}   className='w-4/5 mx-auto mt-4 bg-[#F4F3F0] min-h-svh'>
-                    <h1 className='text-center  font-bold text-5xl py-6'> <h1>Update details of {name} </h1></h1>
+                    <h1 className='text-center  font-bold text-5xl py-6'> <p>Update details of {name} </p></h1>
                      
                     <div className='flex justify-around'>
 
