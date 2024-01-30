@@ -14,12 +14,12 @@ function App() {
       </div>
       <div className="grid grid-cols-3 gap-7 ">
         {
-          coffees.map(coffee => <CoffeeLayout 
-            coffee={coffee} 
+          coffees.map(coffee => <CoffeeLayout
+            coffee={coffee}
             key={coffee._id}
-            coffees = {coffees}
-            setCoffees = {setCoffees}
-            ></CoffeeLayout>)
+            coffees={coffees}
+            setCoffees={setCoffees}
+          ></CoffeeLayout>)
         }
       </div>
     </div>
